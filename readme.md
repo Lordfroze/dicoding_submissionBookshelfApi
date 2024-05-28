@@ -1,1 +1,1 @@
-# Ini adalah file utama untuk belajar ngoding
+# Ini adalah file submission dicoding
