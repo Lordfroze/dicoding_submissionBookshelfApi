@@ -66,6 +66,7 @@ const addBooksHandler = (request, h) => {
 };
 
 
+//Kriteria 4 : API dapat menampilkan seluruh buku
 const getAllBooksHandler = () => ({
     status: 'success',
     data: {
@@ -77,6 +78,8 @@ const getAllBooksHandler = () => ({
     }
 });
 
+
+// Kriteria 5 : API dapat menampilkan detail buku
 const getBooksByIdHandler = (request, h) => {
     const { id } = request.params;
     const book = books.find((book) => book.id === id);
@@ -95,6 +98,7 @@ const getBooksByIdHandler = (request, h) => {
     }
 };
 
+//Kriteria 6 : API dapat mengubah data buku
 const editBooksByIdHandler = (request, h) => {
     const { id } = request.params;
 
