@@ -106,6 +106,25 @@ const editBooksByIdHandler = (request, h) => {
     const { name, year, author, summary, publisher, pageCount, readPage, reading, title, tags, body } = request.payload;
     const updatedAt = new Date().toISOString();
     const index = books.findIndex((books) => books.id === id);
+
+    if (name === undefined) {
+        const response = h.response({
+            status: 'fail',
+            message: 'Gagal menambahkan buku. Mohon isi nama buku',
+        });
+        response.code(400)
+        return response;
+    }
+
+    if (readPage > pageCount) {
+        const response = h.response({
+            status: 'fail',
+            message: 'Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount',
+        });
+        response.code(400)
+        return response;
+    }
+
     if (index !== -1) {
         books[index] = {
             ...books[index],
@@ -137,6 +156,7 @@ const editBooksByIdHandler = (request, h) => {
     });
     response.code(404);
     return response;
+
 };
 
 
