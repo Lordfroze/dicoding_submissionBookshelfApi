@@ -23,10 +23,6 @@ const addBooksHandler = (request, h) => {
         updatedAt,
     };
 
-    books.push(newBooks);
-
-    const isSuccess = books.filter((books) => books.id === id).length > 0;
-
     if (name === undefined) {
         const response = h.response({
             status: 'fail',
@@ -45,12 +41,16 @@ const addBooksHandler = (request, h) => {
         return response;
     }
 
+    books.push(newBooks);
+
+    const isSuccess = books.filter((books) => books.id === id).length > 0;
+    
     if (isSuccess) {
         const response = h.response({
             status: 'success',
             message: 'Buku berhasil ditambahkan',
             data: {
-                booksId: id,
+                bookId: id,
             },
         });
         response.code(201);
@@ -67,6 +67,7 @@ const addBooksHandler = (request, h) => {
 
 
 //Kriteria 4 : API dapat menampilkan seluruh buku
+
 const getAllBooksHandler = () => ({
     status: 'success',
     data: {
@@ -74,7 +75,7 @@ const getAllBooksHandler = () => ({
             id: book.id,
             name: book.name,
             publisher: book.publisher
-        }))
+        })),
         // books,
     }
 });
@@ -110,7 +111,7 @@ const editBooksByIdHandler = (request, h) => {
     if (name === undefined) {
         const response = h.response({
             status: 'fail',
-            message: 'Gagal menambahkan buku. Mohon isi nama buku',
+            message: 'Gagal memperbarui buku. Mohon isi nama buku',
         });
         response.code(400)
         return response;
