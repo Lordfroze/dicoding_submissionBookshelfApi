@@ -159,22 +159,22 @@ const editBooksByIdHandler = (request, h) => {
 
 };
 
-
+// Kriteria 7 : API dapat menghapus buku
 const deleteBooksByIdHandler = (request, h) => {
     const { id } = request.params;
-    const index = books.findIndex((Books) => Books.id === id);
+    const index = books.findIndex((books) => books.id === id);
     if (index !== -1) {
         books.splice(index, 1);
         const response = h.response({
             status: 'success',
-            message: 'Catatan berhasil dihapus',
+            message: 'Buku berhasil dihapus',
         });
         response.code(200);
         return response;
     }
     const response = h.response({
         status: 'fail',
-        message: 'Catatan gagal dihapus. Id tidak ditemukan',
+        message: 'Buku gagal dihapus. Id tidak ditemukan',
     });
     response.code(404);
     return response;
